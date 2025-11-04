@@ -1,14 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvtpsltg4h6qt"]
+[gd_scene load_steps=7 format=3 uid="uid://dvtpsltg4h6qt"]
 
 [ext_resource type="Theme" uid="uid://csqgdtc48ofnc" path="res://main.theme" id="1_gf77e"]
-[ext_resource type="Script" uid="uid://bh8g22k1w8uk8" path="res://menu/new_game_button.gd" id="2_mt2sf"]
-[ext_resource type="PackedScene" uid="uid://b3scmm5r6a23q" path="res://levels/level_0/level_0.tscn" id="3_ithsy"]
-[ext_resource type="Script" uid="uid://ixwvlbldbhib" path="res://menu/quit_button.gd" id="3_ksg64"]
+[ext_resource type="Script" path="res://menu/new_game_button.gd" id="2_mt2sf"]
+[ext_resource type="PackedScene" uid="uid://b730scall63rd" path="res://levels/level_0/main.tscn" id="3_ithsy"]
+[ext_resource type="Script" path="res://menu/quit_button.gd" id="3_ksg64"]
 [ext_resource type="FontFile" uid="uid://cfx40tmx3wsvb" path="res://fonts/braille.ttf" id="4_uhb5h"]
-
-[sub_resource type="SystemFont" id="SystemFont_pep7v"]
-
-[sub_resource type="SystemFont" id="SystemFont_uhb5h"]
+[ext_resource type="FontFile" uid="uid://cyn1nn8rso373" path="res://fonts/GravitasOne-Regular.ttf" id="5_pep7v"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -49,7 +46,7 @@ flat = true
 script = ExtResource("2_mt2sf")
 game_scene = ExtResource("3_ithsy")
 braille_font = ExtResource("4_uhb5h")
-normal_font = SubResource("SystemFont_pep7v")
+normal_font = ExtResource("5_pep7v")
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
 visible = false
@@ -65,7 +62,7 @@ text = "Exit"
 flat = true
 script = ExtResource("3_ksg64")
 braille_font = ExtResource("4_uhb5h")
-normal_font = SubResource("SystemFont_uhb5h")
+normal_font = ExtResource("5_pep7v")
 
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="VBoxContainer/NewGameButton" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="VBoxContainer/QuitButton" method="_on_pressed"]
