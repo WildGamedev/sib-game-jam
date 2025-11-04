@@ -2,10 +2,10 @@
 
 [ext_resource type="Theme" uid="uid://csqgdtc48ofnc" path="res://main.theme" id="1_gf77e"]
 [ext_resource type="Script" path="res://menu/new_game_button.gd" id="2_mt2sf"]
-[ext_resource type="PackedScene" uid="uid://b730scall63rd" path="res://levels/level_0/main.tscn" id="3_ithsy"]
 [ext_resource type="Script" path="res://menu/quit_button.gd" id="3_ksg64"]
-[ext_resource type="FontFile" uid="uid://cfx40tmx3wsvb" path="res://fonts/braille.ttf" id="4_uhb5h"]
-[ext_resource type="FontFile" uid="uid://cyn1nn8rso373" path="res://fonts/GravitasOne-Regular.ttf" id="5_pep7v"]
+[ext_resource type="PackedScene" uid="uid://de26aghlrj5o5" path="res://levels/level_0/level_0.tscn" id="3_pep7v"]
+[ext_resource type="FontFile" uid="uid://cfx40tmx3wsvb" path="res://assets/fonts/braille.ttf" id="4_uhb5h"]
+[ext_resource type="FontFile" uid="uid://cyn1nn8rso373" path="res://assets/fonts/GravitasOne-Regular.ttf" id="5_pep7v"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -44,7 +44,7 @@ layout_mode = 2
 text = "New game"
 flat = true
 script = ExtResource("2_mt2sf")
-game_scene = ExtResource("3_ithsy")
+game_scene = ExtResource("3_pep7v")
 braille_font = ExtResource("4_uhb5h")
 normal_font = ExtResource("5_pep7v")
 
