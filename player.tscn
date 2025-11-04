@@ -1,17 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxmho8asgk1f6"]
+[gd_scene load_steps=6 format=3 uid="uid://dxmho8asgk1f6"]
 
 [ext_resource type="Script" uid="uid://dx35sm5ge724c" path="res://player.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://b3ukp1gcsnowd" path="res://tiles.png" id="2_i3pqv"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
-atlas = ExtResource("2_i3pqv")
-region = Rect2(0, 0, 16, 16)
+[ext_resource type="Texture2D" uid="uid://bc3nenglk4fw8" path="res://character.png" id="2_onrkg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sweqy"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hqtel")
+"texture": ExtResource("2_onrkg")
 }],
 "loop": true,
 "name": &"default",
