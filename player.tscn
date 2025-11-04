@@ -36,7 +36,7 @@ shape = SubResource("RectangleShape2D_2hs0m")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Observer" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Observer"]
 shape = SubResource("CircleShape2D_onrkg")

@@ -7,10 +7,10 @@ const JUMP_VELOCITY = -400.0
 @export var tiles: TileMapLayer
 @export var solid_tiles: TileMapLayer
 
-
+var observe_radius = 13.0
 
 func _physics_process(_delta: float) -> void:
-	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var direction := Input.get_vector("left", "right", "up", "down")
 	if direction:
 		velocity = direction * SPEED
 	else:
@@ -18,15 +18,11 @@ func _physics_process(_delta: float) -> void:
 
 	move_and_slide()
 	
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		var obj = collision.get_collider()
-		if obj is TileMapLayer:
-			var pos = collision.get_position()
-			var mpos = tiles.local_to_map(pos)
-			#var data = solid_tiles.get_cell_tile_data(mpos)
-			#var has_collision = false
-			#if data.get_collision_polygons_count(0) > 0:
-				#has_collision = true
-			#if has_collision:
-			tiles.set_cell(mpos)
+	delete_tiles()
+
+func delete_tiles():
+	for i in range(-1, 2):
+		for j in range(-1, 2):
+			var mpos = tiles.local_to_map(position + Vector2(i, j) * observe_radius)
+			if solid_tiles.get_cell_source_id(mpos) != -1:
+				tiles.set_cell(mpos)
