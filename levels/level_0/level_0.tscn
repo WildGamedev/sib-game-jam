@@ -229,6 +229,7 @@ position = Vector2(247, -48)
 shape = SubResource("RectangleShape2D_emcke")
 
 [node name="TheFlag" type="StaticBody2D" parent="FinishArea"]
+visible = false
 position = Vector2(248, -48)
 
 [node name="TheFlag" type="Sprite2D" parent="FinishArea/TheFlag"]
