@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://b3scmm5r6a23q"]
+[gd_scene load_steps=14 format=4 uid="uid://b3scmm5r6a23q"]
 
 [ext_resource type="Texture2D" uid="uid://tqkn3imuthjw" path="res://assets/new-tile-set.png" id="1_emcke"]
 [ext_resource type="Script" uid="uid://bkpy0qi2vl8n" path="res://levels/level_0/level_0.gd" id="1_lm2rq"]
 [ext_resource type="PackedScene" uid="uid://dxmho8asgk1f6" path="res://character/player.tscn" id="2_j658c"]
+[ext_resource type="Texture2D" uid="uid://cq60j8k0rhuk6" path="res://assets/the-flag.png" id="4_qq2ud"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7mycd"]
 texture = ExtResource("1_emcke")
@@ -163,7 +164,47 @@ texture = ExtResource("1_emcke")
 sources/0 = SubResource("TileSetAtlasSource_0xm2m")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_emcke"]
-size = Vector2(23, 32)
+size = Vector2(18, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wcjp7"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_qq2ud"]
+resource_name = "WinAnim"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WinText:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wcjp7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WinText:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ffevf"]
+_data = {
+&"RESET": SubResource("Animation_wcjp7"),
+&"WinAnim": SubResource("Animation_qq2ud")
+}
 
 [node name="Level_0" type="Node2D"]
 script = ExtResource("1_lm2rq")
@@ -178,14 +219,59 @@ tile_map_data = PackedByteArray("AADW/8n/AAAKAAIAAADW/8r/AAAKAAIAAADW/8v/AAAKAAI
 tile_set = SubResource("TileSet_h2yge")
 
 [node name="Player" parent="." node_paths=PackedStringArray("tiles", "solid_tiles") instance=ExtResource("2_j658c")]
-position = Vector2(280, 141)
+position = Vector2(221, -48)
 tiles = NodePath("../Tiles")
 solid_tiles = NodePath("../SolidTiles")
 
 [node name="FinishArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FinishArea"]
-position = Vector2(244.5, -48)
+position = Vector2(247, -48)
 shape = SubResource("RectangleShape2D_emcke")
+
+[node name="TheFlag" type="StaticBody2D" parent="FinishArea"]
+position = Vector2(248, -48)
+
+[node name="TheFlag" type="Sprite2D" parent="FinishArea/TheFlag"]
+texture = ExtResource("4_qq2ud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishArea/TheFlag"]
+shape = SubResource("CircleShape2D_wcjp7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WinText" type="Label" parent="CanvasLayer/Control"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "CONRGATS
+YOU FOUND THE FLAG"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control"]
+libraries = {
+&"": SubResource("AnimationLibrary_ffevf")
+}
 
 [connection signal="body_entered" from="FinishArea" to="." method="_on_finish_area_body_entered"]

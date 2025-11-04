@@ -33,3 +33,5 @@ zoom = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Observer"]
 shape = SubResource("CircleShape2D_onrkg")
+
+[connection signal="body_entered" from="Observer" to="." method="_on_observer_body_entered"]

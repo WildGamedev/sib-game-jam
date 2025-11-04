@@ -7,6 +7,7 @@ const JUMP_VELOCITY = -400.0
 @export var tiles: TileMapLayer
 @export var solid_tiles: TileMapLayer
 
+@onready var observer: Area2D = $Observer
 @onready var observe_radius = $Observer/CollisionShape2D.shape.radius
 
 var directions = {
@@ -35,3 +36,9 @@ func delete_tiles():
 			var mpos = tiles.local_to_map(position + Vector2(i, j) * observe_radius)
 			if solid_tiles.get_cell_source_id(mpos) != -1:
 				tiles.set_cell(mpos)
+
+
+
+func _on_observer_body_entered(body: Node2D) -> void:
+	if body.name == "TheFlag":
+		body.show()
