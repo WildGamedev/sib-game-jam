@@ -1,4 +1,5 @@
 extends Button
+class_name BrailleButton
 
 @export var braille_font: Font
 @export var normal_font: Font
