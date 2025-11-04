@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvtpsltg4h6qt"]
+
+[ext_resource type="Theme" uid="uid://csqgdtc48ofnc" path="res://main.theme" id="1_gf77e"]
+[ext_resource type="Script" uid="uid://1xxyjgjf5df7" path="res://menu/braille_button.gd" id="2_ksg64"]
+[ext_resource type="FontFile" uid="uid://cfx40tmx3wsvb" path="res://fonts/braille.ttf" id="3_ithsy"]
+
+[sub_resource type="SystemFont" id="SystemFont_uhb5h"]
+
+[sub_resource type="SystemFont" id="SystemFont_ksg64"]
+
+[sub_resource type="SystemFont" id="SystemFont_ithsy"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_gf77e")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.774046, 0.8204767, 0.9051119, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(100, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.0
+offset_top = -163.0
+offset_right = 149.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="NewGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "New game"
+flat = true
+script = ExtResource("2_ksg64")
+braille_font = ExtResource("3_ithsy")
+normal_font = SubResource("SystemFont_uhb5h")
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Settings"
+flat = true
+script = ExtResource("2_ksg64")
+braille_font = ExtResource("3_ithsy")
+normal_font = SubResource("SystemFont_ksg64")
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+flat = true
+script = ExtResource("2_ksg64")
+braille_font = ExtResource("3_ithsy")
+normal_font = SubResource("SystemFont_ithsy")
